@@ -1,0 +1,26 @@
+@startuml "Class Diagram"
+
+class User {
+    + name: String
+    + username: String
+    + email: String
+    + password: String
+    + profilePhoto: String
+    + entries: [Entry]
+
+    + addNewEntry()
+    + editEntry()
+    + deleteEntry()
+}
+
+class Entry {
+    + user: User
+    + date: Date
+    + sleepTime: Date
+    + wakeupTime: Date
+    + duration: Number
+}
+
+User "1" -right-> "N" Entry
+
+@enduml
