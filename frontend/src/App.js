@@ -1,8 +1,8 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import HomePage from "./views/homepage"
-import Dashboard from "./views/dashboard"
-import "antd/dist/antd.css"
+import HomePage from "./views/Homepage"
+import Dashboard from "./views/Dashboard"
+import "./App.less"
 
 const App = () => {
   return (
