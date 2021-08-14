@@ -5,7 +5,7 @@ import styled from "styled-components"
 import AccountArea from "../components/AccountArea"
 import NewEntryButton from "../components/NewEntryButton"
 import SleepDuration from "../components/SleepDuration"
-import StatsCards from "../components/StatsCards"
+import StatsCards from "../components/StatsCardsList"
 import StatsTable from "../components/StatsTable"
 import WelcomingArea from "../components/WelcomingArea"
 
