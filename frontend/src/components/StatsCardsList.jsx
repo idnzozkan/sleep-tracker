@@ -6,18 +6,18 @@ const StatsCards = () => {
     const data = [
         {
             title: 'Avarage Sleep Duration',
-            value: '9h'
+            value: '9 Hours'
         },
         {
             title: 'Avarage Sleep - Wake Up Times',
             value: 'S: 01:00 AM W: 10:00 AM'
         },
         {
-            title: 'Less Than 6H',
+            title: 'Less Than 6 Hours',
             value: '1 Day'
         },
         {
-            title: 'More Than 8H',
+            title: 'More Than 8 Hours',
             value: '3 Days'
         }
     ]
@@ -25,7 +25,7 @@ const StatsCards = () => {
     return (
         <Container>
             {data.map(item => (
-                <StatsCard title={item.title} value={item.value} />
+                <StatsCard title={item.title} value={item.value} key={item.title} />
             ))}
         </Container>
     )

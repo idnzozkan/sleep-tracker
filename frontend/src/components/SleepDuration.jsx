@@ -47,7 +47,7 @@ const SleepDuration = () => {
     const { TabPane } = Tabs
 
     return (
-        <SleepDurationSection>
+        <Container>
             <h2>Sleep Duration</h2>
             <Tabs defaultActiveKey="1" tabBarStyle={{}}>
                 <TabPane tab="WEEK" key="1">
@@ -62,11 +62,11 @@ const SleepDuration = () => {
                     Content of Tab Pane 3
                 </TabPane>
             </Tabs>
-        </SleepDurationSection>
+        </Container>
     )
 }
 
-const SleepDurationSection = styled.div`
+const Container = styled.div`
     h2 {
         color: white;
         font-size: 1.62500rem;
