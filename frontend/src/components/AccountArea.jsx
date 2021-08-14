@@ -1,12 +1,26 @@
 import React from 'react'
-import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { Avatar, Menu, Dropdown } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 const AccountArea = () => {
+    const menu = (
+        <Menu>
+            <Menu.Item key="0">
+                <a href="#">Export Report</a>
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Item key="0">
+                <a href="/">Logout</a>
+            </Menu.Item>
+        </Menu>
+    )
+
     return (
         <Container>
-            <StyledAvatar shape="square" size={70} icon={<UserOutlined />} />
+            <Dropdown overlay={menu} trigger={['click']}>
+                <StyledAvatar shape="square" size={70} icon={<UserOutlined />} />
+            </Dropdown>,
         </Container>
     )
 }
@@ -18,7 +32,9 @@ const Container = styled.div`
 
 const StyledAvatar = styled(Avatar)`
     border-radius: 24px;
-    margin-left: auto;
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 export default AccountArea
