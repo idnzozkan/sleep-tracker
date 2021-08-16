@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadEntries } from '../store/actions/entryAction'
 
 const StatsTable = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(loadEntries())
+    }, [])
+
     const data = [
         {
             date: 'Aug 12 2021',
@@ -52,7 +60,7 @@ const StatsTable = () => {
             <h2>Sleep Stats</h2>
             <Table>
                 <thead align="left">
-                    <th>Name</th>
+                    <th>Date</th>
                     <th>Time of Sleep</th>
                     <th>Wake-up Time</th>
                     <th>Sleep Duration</th>
