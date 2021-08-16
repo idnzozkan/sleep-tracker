@@ -1,5 +1,5 @@
 import React from "react"
-import GlobalStyles from "../GlobalStyles"
+import GlobalStyles from "../globalStyles"
 import styled from "styled-components"
 
 import AccountArea from "../components/AccountArea"
