@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'antd'
+import { Button, Modal, Form, DatePicker, TimePicker } from 'antd'
 import styled from 'styled-components'
 import { PlusOutlined } from '@ant-design/icons'
 
@@ -14,6 +14,45 @@ const NewEntryButton = () => {
         setIsModalVisible(false)
     }
 
+    const formItemLayout = {
+        labelCol: {
+            xs: {
+                span: 24,
+            },
+            sm: {
+                span: 8,
+            },
+        },
+        wrapperCol: {
+            xs: {
+                span: 24,
+            },
+            sm: {
+                span: 16,
+            },
+        },
+    }
+
+    const config = {
+        rules: [
+            {
+                type: 'object',
+                required: true,
+                message: 'Please select time!',
+            },
+        ],
+    }
+
+    const onFinish = (fieldsValue) => {
+        // Should format date value before submit.
+        const values = {
+            ...fieldsValue,
+            'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
+            'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
+        };
+        console.log('Received values of form: ', values);
+    };
+
     return (
         <>
             <div>
@@ -23,7 +62,33 @@ const NewEntryButton = () => {
                 </StyledButton>
             </div>
             <Modal title="Add new entry" footer={null} visible={isModalVisible} onCancel={handleCancel} maskStyle={{ backdropFilter: 'blur(1.5px)' }}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, consectetur? </p>
+                <Form name="time_related_controls" {...formItemLayout} onFinish={onFinish}>
+                    <Form.Item name="date" label="Date" {...config}>
+                        <DatePicker />
+                    </Form.Item>
+                    <Form.Item name="sleep-time" label="Sleep Time" {...config}>
+                        <TimePicker />
+                    </Form.Item>
+                    <Form.Item name="wakeup-time" label="Wake-up Time" {...config}>
+                        <TimePicker />
+                    </Form.Item>
+                    <Form.Item
+                        wrapperCol={{
+                            xs: {
+                                span: 24,
+                                offset: 0,
+                            },
+                            sm: {
+                                span: 16,
+                                offset: 8,
+                            },
+                        }}
+                    >
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
             </Modal>
         </>
     )

@@ -20,7 +20,7 @@ const AccountArea = () => {
         <Container>
             <Dropdown overlay={menu} trigger={['click']}>
                 <StyledAvatar shape="square" size={70} icon={<UserOutlined />} />
-            </Dropdown>,
+            </Dropdown>
         </Container>
     )
 }

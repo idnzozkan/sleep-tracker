@@ -1,10 +1,12 @@
 const express = require("express")
+const cors = require("cors")
 require("./mongo-connection")
 
 const usersRouter = require("./routes/users")
 const entriesRouter = require("./routes/entries")
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
