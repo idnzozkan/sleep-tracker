@@ -1,11 +1,6 @@
 import * as types from "../actions/types"
 
 const initialState = {
-  entry: {
-    date: "",
-    sleepTime: "",
-    wakeupTime: ""
-  },
   entries: []
 }
 
@@ -18,8 +13,7 @@ const entryReducer = (state = initialState, action) => {
       }
     case types.ADD_ENTRY:
       return {
-        ...state,
-        entry: action.payload.entry
+        ...state
       }
     default:
       return state

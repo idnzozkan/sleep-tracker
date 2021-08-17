@@ -6,13 +6,18 @@ import { PlusOutlined } from '@ant-design/icons'
 const NewEntryButton = () => {
     const [isModalVisible, setIsModalVisible] = useState(false)
 
-    const showModal = () => {
-        setIsModalVisible(true)
-    }
+    const showModal = () => setIsModalVisible(true)
 
-    const handleCancel = () => {
-        setIsModalVisible(false)
-    }
+    const handleCancel = () => setIsModalVisible(false)
+
+    const onFinish = (fieldsValue) => {
+        const values = {
+            'date': fieldsValue['date'].format('YYYY-MM-DD'),
+            'sleepTime': fieldsValue['sleep-time'].format('HH:mm:ss'),
+            'wakeupTime': fieldsValue['wakeup-time'].format('HH:mm:ss'),
+        };
+        console.log('Received values of form: ', values);
+    };
 
     const formItemLayout = {
         labelCol: {
@@ -42,16 +47,6 @@ const NewEntryButton = () => {
             },
         ],
     }
-
-    const onFinish = (fieldsValue) => {
-        // Should format date value before submit.
-        const values = {
-            ...fieldsValue,
-            'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
-            'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
-        };
-        console.log('Received values of form: ', values);
-    };
 
     return (
         <>

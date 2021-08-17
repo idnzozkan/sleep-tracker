@@ -13,3 +13,11 @@ export const loadEntries = () => async dispatch => {
     }
   })
 }
+
+export const addEntry = entry => async dispatch => {
+  await axios.post("/entries", { entry })
+
+  dispatch({
+    type: types.ADD_ENTRY
+  })
+}
