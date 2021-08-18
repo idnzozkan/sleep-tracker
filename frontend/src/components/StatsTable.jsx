@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadEntries } from '../store/actions/entryAction'
+import { loadEntries } from '../store/actions/entryActions'
 
 const StatsTable = () => {
     const dispatch = useDispatch()
