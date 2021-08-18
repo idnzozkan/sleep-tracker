@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
             height: 5px;
         }
         &::-webkit-scrollbar-track {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #2e2e48;
             border-radius: 10px;
         }
         &::-webkit-scrollbar-thumb {
