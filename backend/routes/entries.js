@@ -1,8 +1,9 @@
 const router = require("express").Router()
+const auth = require("../middleware/auth")
 const Entry = require("../models/entry")
 const User = require("../models/user")
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   const entries = await Entry.find()
 
   res.send(entries)
