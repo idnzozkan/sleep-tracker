@@ -6,12 +6,6 @@ const User = require("../models/user")
 const Entry = require("../models/entry")
 const durationCalculator = require("../lib/duration-calculator")
 
-router.get("/", async (req, res) => {
-  const users = await User.find()
-
-  res.send(users)
-})
-
 router.post("/", async (req, res) => {
   const schema = Joi.object({
     name: Joi.string().required().min(2).max(30),
@@ -54,12 +48,6 @@ router.post("/", async (req, res) => {
     res.status(500).send(error.message)
     console.log(error.message)
   }
-})
-
-router.get("/:userId", async (req, res) => {
-  const user = await User.findById(req.params.userId)
-
-  res.send(user)
 })
 
 router.post("/:userId/entries", async (req, res) => {
