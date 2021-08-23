@@ -2,11 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import { Form, Input, Button, Checkbox } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { useDispatch } from 'react-redux'
+import { signIn } from '../store/actions/authActions'
 
 const SignInForm = () => {
+    const dispatch = useDispatch()
+
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
+        const { username, password } = values
+
+        let creds = { username, password }
+
+        dispatch(signIn(creds))
+    }
 
     return (
         <Container>

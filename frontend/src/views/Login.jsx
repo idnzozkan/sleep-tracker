@@ -4,9 +4,15 @@ import { Tabs } from 'antd'
 import { Link } from 'react-router-dom'
 import SignInForm from '../components/LoginForm'
 import RegisterForm from '../components/RegisterForm'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 const Login = () => {
     const { TabPane } = Tabs
+    const auth = useSelector(state => state.auth)
+
+    // If the user signed in, then redirect them to the dashboard and do not render the login page
+    if (auth._id) return <Redirect to="/app" />
 
     return (
         <Container>

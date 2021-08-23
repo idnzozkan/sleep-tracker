@@ -2,8 +2,16 @@ import React from 'react'
 import styled from 'styled-components';
 import { Avatar, Menu, Dropdown } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../store/actions/authActions';
 
 const AccountArea = () => {
+    const dispatch = useDispatch()
+
+    const handleSignOut = () => {
+        dispatch(signOut())
+    }
+
     const menu = (
         <Menu>
             <Menu.Item key="0">
@@ -11,7 +19,7 @@ const AccountArea = () => {
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key="0">
-                <a href="/">Logout</a>
+                <a href="/auth" onClick={handleSignOut}>Logout</a>
             </Menu.Item>
         </Menu>
     )

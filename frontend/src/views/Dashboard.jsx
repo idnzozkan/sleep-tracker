@@ -1,6 +1,8 @@
 import React from "react"
 import GlobalStyles from "../globalStyles"
 import styled from "styled-components"
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import AccountArea from "../components/AccountArea"
 import NewEntryButton from "../components/NewEntryButton"
@@ -10,6 +12,11 @@ import StatsTable from "../components/StatsTable"
 import WelcomingArea from "../components/WelcomingArea"
 
 const Dashboard = () => {
+  const auth = useSelector(state => state.auth)
+
+  // If the user is not signed in, then redirect them to the login page and do not render the dashboard
+  if (!auth._id) return <Redirect to="/auth" />
+
   return (
     <Container>
       <GlobalStyles />
