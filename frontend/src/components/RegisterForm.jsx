@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 import { Form, Input, Checkbox, Button } from 'antd'
 import { signUp } from '../store/actions/authActions'
 
@@ -36,7 +36,7 @@ const tailFormItemLayout = {
     },
 }
 
-const SignInForm = () => {
+const RegisterForm = () => {
     const [form] = Form.useForm()
     const dispatch = useDispatch()
 
@@ -170,4 +170,4 @@ const Container = styled.div`
 
 `
 
-export default SignInForm
+export default RegisterForm
