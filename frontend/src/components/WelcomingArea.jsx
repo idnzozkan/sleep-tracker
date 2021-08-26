@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 const WelcomingArea = () => {
+    const auth = useSelector(state => state.auth)
+    const [currentTime, setCurrentTime] = useState(moment().format('MMMM Do YYYY, HH:mm:ss '))
+
+    setInterval(() => {
+        setCurrentTime(moment().format('MMMM Do YYYY, HH:mm:ss '))
+    }, 1000);
+
     return (
         <Container>
-            <h2>Hello <span>John Doe</span> 👋</h2>
+            <h2>Hello <span>{auth.name}</span> 👋</h2>
             <p>Welcome to SleepTracker!</p>
-            <span>Aug 12 2021 12:07 AM</span>
+            <span>{currentTime}</span>
         </Container>
     )
 }

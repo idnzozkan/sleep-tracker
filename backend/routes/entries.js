@@ -16,7 +16,7 @@ router.get("/:userId", auth, async (req, res) => {
 })
 
 router.post("/", auth, async (req, res) => {
-  const user = User.findById(req.body.userId)
+  const user = await User.findById(req.body.userId)
 
   const entryRequest = {
     user,
