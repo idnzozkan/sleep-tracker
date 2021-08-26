@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import { Button, Modal, Form, DatePicker, TimePicker } from 'antd'
 import styled from 'styled-components'
 import { PlusOutlined } from '@ant-design/icons'
+import moment from 'moment'
+import { useDispatch } from 'react-redux'
+import { addEntry } from '../store/actions/entryActions'
 
 const NewEntryButton = () => {
+    const dispatch = useDispatch()
+
     const [isModalVisible, setIsModalVisible] = useState(false)
 
     const showModal = () => setIsModalVisible(true)
@@ -16,7 +21,28 @@ const NewEntryButton = () => {
             'sleepTime': fieldsValue['sleep-time'].format('HH:mm:ss'),
             'wakeupTime': fieldsValue['wakeup-time'].format('HH:mm:ss'),
         };
-        console.log('Received values of form: ', values);
+
+        // calculate the duration
+        let startTime = moment(values.sleepTime, "HH:mm:ss")
+        let endTime = moment(values.wakeupTime, "HH:mm:ss")
+
+        let dif = moment.duration(endTime.diff(startTime))
+
+        if (endTime.isBefore(startTime)) {
+            startTime = moment(values.sleepTime, "HH:mm:ss").format("hh:mm:ss A")
+            endTime = moment(values.wakeupTime + ' PM', "hh:mm:ss A").format("HH:mm:ss")
+
+            startTime = moment(startTime, 'HH:mm:ss')
+            endTime = moment(endTime, 'HH:mm:ss')
+
+            dif = moment.duration(endTime.diff(startTime))
+        }
+
+        values.duration = [dif.hours(), dif.minutes(), dif.seconds()].join(':')
+
+        console.log('Received values of form: ', values); // remove this line
+
+        dispatch(addEntry(values))
     };
 
     const formItemLayout = {

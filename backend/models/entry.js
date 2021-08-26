@@ -6,10 +6,10 @@ const EntrySchema = new mongoose.Schema({
     ref: "User",
     autopopulate: { maxDepth: 2 }
   },
-  date: Date,
-  sleepTime: Date,
-  wakeupTime: Date,
-  duration: Number
+  date: String,
+  sleepTime: String,
+  wakeupTime: String,
+  duration: String
 })
 
 EntrySchema.plugin(require("mongoose-autopopulate"))
