@@ -40,9 +40,9 @@ const NewEntryButton = () => {
 
         values.duration = [dif.hours(), dif.minutes(), dif.seconds()].join(':')
 
-        console.log('Received values of form: ', values); // remove this line
-
         dispatch(addEntry(values))
+
+        handleCancel()
     };
 
     const formItemLayout = {
