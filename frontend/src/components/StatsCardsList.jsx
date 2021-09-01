@@ -1,32 +1,20 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import StatsCard from './StatsCard'
+import AvarageSleepDuration from './AvarageSleepDuration'
+import AvarageSleepWakeUpTimes from './AvarageSleepWakeUpTimes'
+import LessThanSixHours from './LessThanSixHours'
+import MoreThanSixHours from './MoreThanSixHours'
 
 const StatsCards = () => {
-    const data = [
-        {
-            title: 'Avarage Sleep Duration',
-            value: '9 Hours'
-        },
-        {
-            title: 'Avarage Sleep - Wake Up Times',
-            value: 'S: 01:00 AM W: 10:00 AM'
-        },
-        {
-            title: 'Less Than 6 Hours',
-            value: '1 Day'
-        },
-        {
-            title: 'More Than 8 Hours',
-            value: '3 Days'
-        }
-    ]
+    const entriesData = useSelector(state => state.entry.entries)
 
     return (
         <Container>
-            {data.map(item => (
-                <StatsCard title={item.title} value={item.value} key={item.title} />
-            ))}
+            <AvarageSleepDuration data={entriesData} />
+            <AvarageSleepWakeUpTimes data={entriesData} />
+            <LessThanSixHours data={entriesData} />
+            <MoreThanSixHours data={entriesData} />
         </Container>
     )
 }
