@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import GlobalStyles from "../globalStyles"
 import styled from "styled-components"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import AccountArea from "../components/AccountArea"
@@ -11,8 +11,15 @@ import StatsCards from "../components/StatsCardsList"
 import StatsTable from "../components/StatsTable"
 import WelcomingArea from "../components/WelcomingArea"
 
+import { loadEntries } from '../store/actions/entryActions'
+
 const Dashboard = () => {
   const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadEntries())
+  }, [])
 
   // If the user is not signed in, then redirect them to the login page and do not render the dashboard
   if (!auth._id) return <Redirect to="/auth" />
