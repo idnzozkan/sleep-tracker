@@ -9,7 +9,9 @@ router.get("/:userId", auth, async (req, res) => {
 
     if (user._id != req.user._id) return res.status(401).send("Not authorized!")
 
-    res.send(user.entries)
+    const entries = user.entries.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+    res.send(entries)
   } catch (error) {
     console.log(error.message)
   }
