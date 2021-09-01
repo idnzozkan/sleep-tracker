@@ -1,59 +1,40 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadEntries } from '../store/actions/entryActions'
+import { useSelector } from 'react-redux'
+import { Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
 
 const StatsTable = () => {
-    const dispatch = useDispatch()
+    const entriesData = useSelector(state => state.entry.entries)
+    const isLoading = useSelector(state => state.loading)
+    const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
-    useEffect(() => {
-        dispatch(loadEntries())
-    }, [])
-
-    const data = [
-        {
-            date: 'Aug 12 2021',
-            sleepTime: '12:00 AM',
-            wakeupTime: '05:00 AM',
-            duration: 5
-        },
-        {
-            date: 'Aug 11 2021',
-            sleepTime: '01:30 AM',
-            wakeupTime: '07:00 AM',
-            duration: 5.5
-        },
-        {
-            date: 'Aug 10 2021',
-            sleepTime: '10:00 PM',
-            wakeupTime: '04:00 AM',
-            duration: 6
-        },
-        {
-            date: 'Aug 09 2021',
-            sleepTime: '02:00 AM',
-            wakeupTime: '09:00 AM',
-            duration: 7
-        },
-        {
-            date: 'Aug 8 2021',
-            sleepTime: '03:00 AM',
-            wakeupTime: '09:00 AM',
-            duration: 6
-        },
-        {
-            date: 'Aug 7 2021',
-            sleepTime: '12:00 AM',
-            wakeupTime: '08:00 AM',
-            duration: 8
-        },
-        {
-            date: 'Aug 6 2021',
-            sleepTime: '11:00 PM',
-            wakeupTime: '05:00 AM',
-            duration: 6
+    const showContent = () => {
+        if (isLoading) {
+            return (
+                <tr>
+                    <Spin indicator={loadingIcon} />
+                </tr>
+            )
+        } else {
+            return (
+                entriesData.length ? entriesData.map(entry => (
+                    <tr>
+                        <td>{entry.date}</td>
+                        <td>{entry.sleepTime}</td>
+                        <td>{entry.wakeupTime}</td>
+                        <td>{entry.duration.split(':')[0]}h {entry.duration.split(':')[1]}m</td>
+                    </tr>
+                )) : (
+                    <tr>
+                        No data
+                    </tr>
+                )
+            )
         }
-    ]
+    }
+
+    console.log(isLoading)
 
     return (
         <Container>
@@ -66,18 +47,7 @@ const StatsTable = () => {
                     <th>Sleep Duration</th>
                 </thead>
                 <tbody>
-                    {data.length ? data.map(entry => (
-                        <tr>
-                            <td>{entry.date}</td>
-                            <td>{entry.sleepTime}</td>
-                            <td>{entry.wakeupTime}</td>
-                            <td>{entry.duration} Hours</td>
-                        </tr>
-                    )) : (
-                        <tr>
-                            No data
-                        </tr>
-                    )}
+                    {showContent()}
                 </tbody>
             </Table>
         </Container>
