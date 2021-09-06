@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Spin } from 'antd'
@@ -19,7 +19,7 @@ const StatsTable = () => {
         } else {
             return (
                 entriesData.length ? entriesData.map(entry => (
-                    <tr>
+                    <tr key={entry._id}>
                         <td>{entry.date}</td>
                         <td>{entry.sleepTime}</td>
                         <td>{entry.wakeupTime}</td>
@@ -33,8 +33,6 @@ const StatsTable = () => {
             )
         }
     }
-
-    console.log(isLoading)
 
     return (
         <Container>
