@@ -18,7 +18,7 @@ const Dashboard = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadEntries())
+    if (auth._id) dispatch(loadEntries())
   }, [])
 
   // If the user is not signed in, then redirect them to the login page and do not render the dashboard
