@@ -1,20 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import AvarageSleepDuration from './AvarageSleepDuration'
-import AvarageSleepWakeUpTimes from './AvarageSleepWakeUpTimes'
+import AverageSleepDuration from './AverageSleepDuration'
+import AverageSleepWakeUpTimes from './AverageSleepWakeUpTimes'
 import LessThanSixHours from './LessThanSixHours'
-import MoreThanSixHours from './MoreThanSixHours'
+import MoreThanEightHours from './MoreThanEightHours'
 
 const StatsCards = () => {
     const entriesData = useSelector(state => state.entry.entries)
 
     return (
         <Container>
-            <AvarageSleepDuration data={entriesData} />
-            <AvarageSleepWakeUpTimes data={entriesData} />
+            <AverageSleepDuration data={entriesData} />
+            <AverageSleepWakeUpTimes data={entriesData} />
             <LessThanSixHours data={entriesData} />
-            <MoreThanSixHours data={entriesData} />
+            <MoreThanEightHours data={entriesData} />
         </Container>
     )
 }
