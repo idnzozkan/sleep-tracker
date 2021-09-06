@@ -7,17 +7,15 @@ export const loadEntries = () => async (dispatch, getState) => {
   const userId = getState().auth._id
   const entries = await axios.get(`/entries/${userId}`, setHeaders())
 
-  console.log(entries.data)
-
   if (entries.data) {
-    dispatch(setIsLoading(false))
-
     dispatch({
       type: types.FETCH_ENTRIES,
       payload: {
         entries: entries.data
       }
     })
+
+    dispatch(setIsLoading(false))
   }
 }
 
