@@ -21,3 +21,27 @@ export const calculateAverageOfTimes = arr => {
 
   return time.toTimeString().slice(0, 8)
 }
+
+export const splitArrayByPeriod = (arr, period) => {
+  let chunks = [],
+    i = 0,
+    n = arr.length
+
+  while (i < n) {
+    switch (period) {
+      case "week":
+        chunks.push(arr.slice(i, (i += 7)))
+        break
+      case "month":
+        chunks.push(arr.slice(i, (i += 30)))
+        break
+      case "year":
+        chunks.push(arr.slice(i, (i += 365)))
+        break
+      default:
+        return chunks
+    }
+  }
+
+  return chunks
+}
