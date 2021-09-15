@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 
 import AccountArea from "../components/AccountArea"
 import NewEntryButton from "../components/NewEntryButton"
-import SleepDuration from "../components/SleepDuration"
+import SleepDurationChart from "../components/SleepDurationChart"
 import StatsCards from "../components/StatsCardsList"
 import StatsTable from "../components/StatsTable"
 import WelcomingArea from "../components/WelcomingArea"
@@ -37,7 +37,7 @@ const Dashboard = () => {
           <WelcomingArea />
           <NewEntryButton />
         </WelcomingAreaWrapper>
-        <SleepDuration />
+        <SleepDurationChart />
         <Footer>
           <p>{'</>'} by <a href="https://www.github.com/idnzozkan" title="GitHub" target='_blank'>Deniz Ozkan</a></p>
         </Footer>
