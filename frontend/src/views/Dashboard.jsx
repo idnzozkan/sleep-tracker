@@ -4,9 +4,10 @@ import styled from "styled-components"
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
+import LoadingScreen from "../components/LoadingScreen"
 import AccountArea from "../components/AccountArea"
 import NewEntryButton from "../components/NewEntryButton"
-import SleepDuration from "../components/SleepDuration"
+import SleepDurationChart from "../components/SleepDurationChart"
 import StatsCards from "../components/StatsCardsList"
 import StatsTable from "../components/StatsTable"
 import WelcomingArea from "../components/WelcomingArea"
@@ -15,6 +16,7 @@ import { loadEntries } from '../store/actions/entryActions'
 
 const Dashboard = () => {
   const auth = useSelector(state => state.auth)
+  const isLoading = useSelector(state => state.loading)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -23,6 +25,9 @@ const Dashboard = () => {
 
   // If the user is not signed in, then redirect them to the login page and do not render the dashboard
   if (!auth._id) return <Redirect to="/auth" />
+
+  // Show the loading screen until async request completes
+  if (isLoading) return <LoadingScreen />
 
   return (
     <Container>
@@ -37,7 +42,7 @@ const Dashboard = () => {
           <WelcomingArea />
           <NewEntryButton />
         </WelcomingAreaWrapper>
-        <SleepDuration />
+        <SleepDurationChart />
         <Footer>
           <p>{'</>'} by <a href="https://www.github.com/idnzozkan" title="GitHub" target='_blank'>Deniz Ozkan</a></p>
         </Footer>
