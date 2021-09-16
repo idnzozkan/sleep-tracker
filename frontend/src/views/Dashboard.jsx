@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
+import LoadingScreen from "../components/LoadingScreen"
 import AccountArea from "../components/AccountArea"
 import NewEntryButton from "../components/NewEntryButton"
 import SleepDurationChart from "../components/SleepDurationChart"
@@ -15,6 +16,7 @@ import { loadEntries } from '../store/actions/entryActions'
 
 const Dashboard = () => {
   const auth = useSelector(state => state.auth)
+  const isLoading = useSelector(state => state.loading)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -23,6 +25,9 @@ const Dashboard = () => {
 
   // If the user is not signed in, then redirect them to the login page and do not render the dashboard
   if (!auth._id) return <Redirect to="/auth" />
+
+  // Show the loading screen until async request completes
+  if (isLoading) return <LoadingScreen />
 
   return (
     <Container>

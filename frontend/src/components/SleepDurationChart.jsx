@@ -8,7 +8,6 @@ import moment from 'moment'
 
 const SleepDurationChart = () => {
     const entriesData = useSelector(state => state.entry.entries)
-    if (!entriesData.length) return <h1>Loading</h1>
 
     const entriesOfWeek = splitArrayByPeriod(entriesData, 'week')[0]
     const entriesOfMonth = splitArrayByPeriod(entriesData, 'month')[0]

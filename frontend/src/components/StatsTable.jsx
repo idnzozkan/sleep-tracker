@@ -1,37 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Spin } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons'
 
 const StatsTable = () => {
     const entriesData = useSelector(state => state.entry.entries)
-    const isLoading = useSelector(state => state.loading)
-    const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
 
     const showContent = () => {
-        if (isLoading) {
-            return (
+        return (
+            entriesData.length ? entriesData.map(entry => (
+                <tr key={entry._id}>
+                    <td>{entry.date}</td>
+                    <td>{entry.sleepTime}</td>
+                    <td>{entry.wakeupTime}</td>
+                    <td>{entry.duration.split(':')[0]}h {entry.duration.split(':')[1]}m</td>
+                </tr>
+            )) : (
                 <tr>
-                    <Spin indicator={loadingIcon} />
+                    No data
                 </tr>
             )
-        } else {
-            return (
-                entriesData.length ? entriesData.map(entry => (
-                    <tr key={entry._id}>
-                        <td>{entry.date}</td>
-                        <td>{entry.sleepTime}</td>
-                        <td>{entry.wakeupTime}</td>
-                        <td>{entry.duration.split(':')[0]}h {entry.duration.split(':')[1]}m</td>
-                    </tr>
-                )) : (
-                    <tr>
-                        No data
-                    </tr>
-                )
-            )
-        }
+        )
     }
 
     return (
