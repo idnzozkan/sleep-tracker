@@ -23,6 +23,8 @@ export const calculateAverageOfTimes = arr => {
 }
 
 export const splitArrayByPeriod = (arr, period) => {
+  if (!arr.length) return [[]]
+
   let chunks = [],
     i = 0,
     n = arr.length

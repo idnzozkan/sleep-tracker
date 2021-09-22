@@ -14,12 +14,15 @@ const SleepDurationChart = () => {
     const entriesOfYear = splitArrayByPeriod(entriesData, 'year')[0]
 
     const formatChartData = (arr) => {
-        if (arr) {
+        if (arr.length) {
+            arr = arr.reverse()
+
             return arr.map(entry => ({
                 Date: moment(entry.date).format('MMM Do'),
                 Duration: +(entry.duration.split(':')[0]) + (+(entry.duration.split(':')[1] / 60).toFixed(1))
             }))
         }
+        else return arr
     }
 
     let weekData = formatChartData(entriesOfWeek)
@@ -35,6 +38,7 @@ const SleepDurationChart = () => {
         yField: 'Duration',
         xAxis: { tickCount: 7 },
         smooth: true,
+        lineWidth: 1,
     }
 
     monthConfig = {
@@ -60,7 +64,7 @@ const SleepDurationChart = () => {
     return (
         <Container>
             <h2>Sleep Duration</h2>
-            <Tabs defaultActiveKey="1" tabBarStyle={{}}>
+            <Tabs defaultActiveKey="1" tabBarStyle={{ color: '#8ec8ff90' }}>
                 <TabPane tab="WEEK" key="1">
                     <ChartContainer>
                         <Line {...weekConfig} />
@@ -95,9 +99,14 @@ const Container = styled.div`
 `
 
 const ChartContainer = styled.div`
+    margin-top: 1rem;
     max-height: 100%;
     background: #2e2e48;
     border-radius: 24px;
+
+    canvas {
+        padding: 1rem;
+    }
 `
 
 export default SleepDurationChart

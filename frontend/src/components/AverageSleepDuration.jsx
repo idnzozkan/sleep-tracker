@@ -8,6 +8,8 @@ const AverageSleepDuration = ({ data }) => {
 
     if (!data.length) {
         durations.push('0:0')
+
+        formattedAverage = 0 + 'h ' + 0 + 'm'
     } else {
         data.forEach(item => durations.push(item.duration))
 

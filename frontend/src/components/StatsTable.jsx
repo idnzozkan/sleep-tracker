@@ -16,7 +16,9 @@ const StatsTable = () => {
                 </tr>
             )) : (
                 <tr>
-                    No data
+                    <div style={{ marginLeft: '0.4rem' }}>
+                        &nbsp; No data
+                    </div>
                 </tr>
             )
         )
