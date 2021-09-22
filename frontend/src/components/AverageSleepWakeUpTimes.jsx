@@ -10,6 +10,8 @@ const AverageSleepWakeUpTimes = ({ data }) => {
     if (!data.length) {
         sleepTimes.push('0:0')
         wakeUpTimes.push('0:0')
+
+        value = 'S: 0 W: 0'
     } else {
         data.forEach(item => {
             sleepTimes.push(item.sleepTime)
