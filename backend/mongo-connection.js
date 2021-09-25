@@ -1,5 +1,7 @@
 const mongoose = require("mongoose")
-mongoose.connect("mongodb://localhost:27017/sleep-tracker", {
+const connectionString = process.env.MONGODB_CONNECTION_STRING || "mongodb://database/sleep-tracker"
+
+mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
