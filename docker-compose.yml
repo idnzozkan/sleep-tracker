@@ -8,10 +8,12 @@ services:
   backend:
     build: backend
     environment:
-      - MONGODB_CONNECTION_STRING="mongodb://database/sleep-tracker"
+      MONGODB_CONNECTION_STRING: "mongodb://database/sleep-tracker"
     ports:
       - 8080:8080
   database:
     image: mongo
     ports:
       - 37017:27017
+    volumes:
+      - ./data:/data/db
