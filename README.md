@@ -36,6 +36,7 @@ After that, you should be able to display the app on [http://localhost:5000](htt
 - [ ] Update dashboard screen for new user
 - [ ] Add user profile photo feature
 - [ ] Export report by generating a PDF file
+- [ ] Add edit and delete entry functionalities
 
 
 ## Tech Stack
